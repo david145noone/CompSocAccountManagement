@@ -9,42 +9,6 @@ public class FileParser {
         ArrayList<Member> members = j.makeMembers();
         ArrayList<Member> account = new ArrayList<>();
         String workingDir = System.getProperty("user.dir") + "/";
-        /*FileReader e = new FileReader(workingDir + "emails");
-        FileReader i = new FileReader(workingDir + "ids");
-        ArrayList<String> eArr = readFile(e);
-        ArrayList<String> iArr = readFile(i);
-
-        int eCnt = 0, idCnt = 0, bothCnt = 0;
-        for(Member m : members){
-            boolean found = false;
-            for(String s: eArr){
-                if(s==null){
-                    break;
-                }
-                if (s.contains(m.email)){
-                    found = true;
-                    eCnt++;
-                    break;
-                }
-            }
-            for(String s: iArr){
-                if(s==null){
-                    break;
-                }
-                if (s.contains(m.id)){
-                    idCnt++;
-                    if(found) bothCnt++;
-                    found = true;
-                    break;
-                }
-            }
-            if(found) account.add(m);
-        }
-
-        System.out.println("Email: "+eCnt);
-        System.out.println("ID: "+idCnt);
-        System.out.println("Both: "+bothCnt);
-        System.out.println("Total: "+account.size());*/
 
         ArrayList<LDAPEntry> other = new ArrayList<>();
         ArrayList<LDAPEntry> memberAcc = new ArrayList<>();
@@ -62,10 +26,10 @@ public class FileParser {
             }
         }
 
-        String otherLDIF = "dn: ou=other,dc=compsoc,dc=nuigalway,dc=ie\n" +
+        String otherLDIF = "version:1\n\ndn: ou=other,dc=compsoc,dc=nuigalway,dc=ie\n" +
                 "objectclass: organizationalUnit\n" +
                 "objectclass: top\n" +
-                "ou: other";
+                "ou: other\n";
         for(LDAPEntry l: other){
             l.dn = "uid="+l.uid+",ou=other,dc=compsoc,dc=nuigalway,dc=ie";
             otherLDIF += "\n" + l.makeLDIFEntry();
@@ -85,10 +49,10 @@ public class FileParser {
             }
         }
 
-        String memLDIF = "dn: ou=members,dc=compsoc,dc=nuigalway,dc=ie\n" +
+        String memLDIF = "version:1\n\ndn: ou=members,dc=compsoc,dc=nuigalway,dc=ie\n" +
                 "objectclass: organizationalUnit\n" +
                 "objectclass: top\n" +
-                "ou:members";
+                "ou:members\n";
         for(LDAPEntry l: memberAcc){
             l.dn = "uid="+l.uid+",ou=members,dc=compsoc,dc=nuigalway,dc=ie";
             memLDIF += "\n" + l.makeLDIFEntry();
@@ -108,11 +72,11 @@ public class FileParser {
             }
         }
 
-        String incomLDIF = "dn: ou=incompletes,dc=compsoc,dc=nuigalway,dc=ie\n" +
+        String incomLDIF = "version:1\n\ndn: ou=incompletes,dc=compsoc,dc=nuigalway,dc=ie\n" +
                 "objectclass: organizationalUnit\n" +
                 "objectclass: top\n" +
-                "ou: incompletes";
-        for(LDAPEntry l: other){
+                "ou: incompletes\n";
+        for(LDAPEntry l: incompleteAcc){
             l.dn = "uid="+l.uid+",ou=incompletes,dc=compsoc,dc=nuigalway,dc=ie";
             incomLDIF += "\n" + l.makeLDIFEntry();
         }
