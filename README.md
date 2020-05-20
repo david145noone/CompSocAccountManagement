@@ -6,4 +6,4 @@ There is also interest to add an admin backend to handle mailing lists, groups a
 
 Live at https://my.compsoc.ie
 
-Designed in collaboration with David, Laura and the committee of 2019/20.
+Designed in collaboration with David, Laura, Miquel, Dylan and the committee of 2019/20.
