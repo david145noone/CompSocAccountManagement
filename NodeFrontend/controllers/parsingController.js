@@ -46,7 +46,7 @@ function checkLDAP(data) {
     // We're filtering by the student's ID and just returning their username but we don't need to
     var searchOptions = {
         scope: 'sub',
-        filter: '(employeeNumber='data.employeeNumber')',
+        filter: '(employeeNumber='+data.employeeNumber+')',
         attributes: ['uid']
     }
 
