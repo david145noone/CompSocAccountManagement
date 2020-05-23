@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!--  This file has been downloaded from https://bootdey.com  -->
-    <!--  All snippets are MIT license https://bootdey.com/license -->
-    <title>Bootdey.com</title>
+    <title>My Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <style type="text/css">
@@ -34,9 +32,9 @@
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                    <p class="mb-0">@johnny.s</p>
-                    <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.cn}}</h4>
+                    <p class="mb-0">@{{user.uid}}</p>
+                    <div class="text-muted"><small><!--short description--></small></div>
                     <div class="mt-2">
                       <button class="btn btn-primary" type="button">
                         <i class="fa fa-fw fa-camera"></i>
@@ -45,13 +43,13 @@
                     </div>
                   </div>
                   <div class="text-center text-sm-right">
-                    <span class="badge badge-secondary">administrator</span>
-                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                    <span class="badge badge-secondary">{{groupName}}</span>
+                    <!--<div class="text-muted"><small>Joined 09 Dec 2017</small></div>-->
                   </div>
                 </div>
               </div>
               <ul class="nav nav-tabs">
-                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                <li class="nav-item"><a href="" class="active nav-link">User Information</a></li>
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
@@ -62,27 +60,27 @@
                           <div class="col">
                             <div class="form-group">
                               <label>First Name</label>
-                              <input class="form-control" type="text" name="fname" placeholder="Margaret">
+                              <input required class="form-control" type="text" name="fname" value="{{user.givenName}}" placeholder="{{user.givenName}}">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label>Last Name</label>
-                              <input class="form-control" type="text" name="surname" placeholder="O'Keefe">
+                              <input required class="form-control" type="text" name="surname" value="{{user.sn}}" placeholder="{{user.sn}}">
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Student ID</label>
-                              <input readonly class="form-control" type="text" name="sid" placeholder="Student/Staff ID">
+                              <label>Mobile Phone</label>
+                              <input required class="form-control" type="text" name="sid" value="{{user.mobile}}" placeholder="{{user.mobile}}">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label>Username</label>
-                              <input class="form-control" type="text" name="uid" placeholder="SexDoll99">
+                              <input required class="form-control" type="text" name="uid" value="{{user.uid}}" placeholder="{{user.uid}}">
                             </div>
                           </div>
                         </div>
@@ -90,7 +88,7 @@
                           <div class="col">
                             <div class="form-group">
                               <label>Email</label>
-                              <input class="form-control" type="text" placeholder="m.okeefe4@nuigalway.ie">
+                              <input required readonly class="form-control" type="text" value="{{user.mail}}" placeholder="{{user.mail}}">
                             </div>
                           </div>
                         </div>
@@ -98,7 +96,7 @@
                           <div class="col mb-3">
                             <div class="form-group">
                               <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
+                              <textarea class="form-control" rows="5" placeholder="My Bio (N/A Currently)"></textarea>
                             </div>
                           </div>
                         </div>
@@ -172,7 +170,7 @@
         <div class="card mb-3">
           <div class="card-body">
             <div class="px-xl-3">
-              <form action="https://my.compsoc.ie/logout" method="post">
+              <form action="https://my.compsoc.ie/auth/logout" method="post">
                 <button type="submit" class="btn btn-block btn-secondary">
                   <i class="fa fa-sign-out"></i>
                   <span>Logout</span>
@@ -184,8 +182,8 @@
         <div class="card">
           <div class="card-body">
             <h6 class="card-title font-weight-bold">Support</h6>
-            <p class="card-text">Get fast, free help from our friendly assistants.</p>
-            <button type="button" class="btn btn-primary">Contact Us</button>
+            <p class="card-text">Get fast, free help from our committee</p>
+            <button onclick="location.href='mailto:admin@compsoc.ie';" type="button" class="btn btn-primary">Contact Us</button>
           </div>
         </div>
       </div>
