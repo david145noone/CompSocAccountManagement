@@ -17,6 +17,7 @@ var schedule = require('node-schedule');
 
 var rootRouter = require('./routes/rootRouter');
 var authRouter = require('./routes/authRouter');
+var adminRouter = require('./routes/adminRouter');
 
 var rootController = require('./controllers/rootController');
 var parsingController = require('./controllers/parsingController');
@@ -79,9 +80,10 @@ passport.deserializeUser(function(user,done) {
 
 app.use('/', rootRouter);
 app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
 app.get('*', rootController.lost); // Handling 404 Page
 
 // Running cron job
-schedule.scheduleJob('* */1 * * *', parsingController);
+schedule.scheduleJob('*/1 * * * *', parsingController);
 
 module.exports = app;
