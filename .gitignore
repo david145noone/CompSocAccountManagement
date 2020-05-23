@@ -1,0 +1,10 @@
+.idea
+.vscode
+node_modules/
+package-lock.json
+public
+*.env
+*.yml
+members/
+*.txt
+
