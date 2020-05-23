@@ -11,9 +11,19 @@ whatGroup = (gid) => {
   else return 'member';
 }
 
+displayAdminButton = (gid) => {
+  if (gid == '500') return 'block';
+  else return 'none';
+}
+
 exports.root = (req, res, next) => {
     if (!req.isAuthenticated()) res.redirect('/auth/login');
-    else res.render('index', {title: 'Index', user: req.user, groupName: whatGroup(req.user.gidNumber)});
+    else res.render('index', {
+      title: 'Index',
+      user: req.user,
+      groupName: whatGroup(req.user.gidNumber),
+      displayAdminButton: displayAdminButton(req.user.gidNumber)
+    });
 }
 
 exports.lost = (req, res, next) => {
