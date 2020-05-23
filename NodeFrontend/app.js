@@ -82,6 +82,6 @@ app.use('/auth', authRouter);
 app.get('*', rootController.lost); // Handling 404 Page
 
 // Running cron job
-schedule.scheduleJob('* */1 * * * *', parsingController);
+schedule.scheduleJob('* */1 * * *', parsingController);
 
 module.exports = app;
